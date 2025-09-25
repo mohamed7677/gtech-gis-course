@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="gtech-logo.png">
+  <title>G.TECH - دورة المستوى الأول في GIS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root{
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --primary: #0e5aa7;
+      --accent: #1fb496;
+      --text: #0f1724;
+      --muted: #6b7280;
+      --success: #10b981;
+      --error: #ef4444;
+      --whatsapp: #25D366;
+      --facebook: #1877F2;
+      --instagram: #E1306C;
+      --youtube: #FF0000;
+      --tiktok: #000000;
+      --linkedin: #0077B5;
+      --telegram: #0088cc;
+      --certificate: #8B5CF6;
+      --services: #f59e0b;
+      --discount: #ff6b6b;
+    }
+    *{box-sizing:border-box;font-family:'Tajawal',system-ui,Arial;margin:0;padding:0}
+    html,body{height:100%;background:var(--bg);color:var(--text);direction:rtl}
+    body {
+      position: relative;
+      min-height: 100vh;
+    }
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:var(--card);box-shadow:0 2px 10px rgba(0,0,0,0.05);position:sticky;top:0;z-index:100}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo img{height:64px;width:64px;object-fit:contain;border-radius:12px;box-shadow:0 6px 18px rgba(14,90,167,0.12)}
+    .brand h1{font-size:20px;margin-bottom:2px;color:var(--primary)}.brand p{font-size:12px;color:var(--muted)}
+    nav{display:flex;align-items:center;gap:18px}
+    nav a{margin-left:18px;color:var(--text);text-decoration:none;font-weight:600;transition:color 0.3s;font-size:14px}
+    nav a:hover{color:var(--primary)}
+    .language-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid #e6e9ef;
+    }
+    .language-switcher:hover {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .language-switcher img {
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+    }
+    .language-switcher span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 400px;gap:30px;align-items:center;padding:40px;max-width:1200px;margin:0 auto}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.95));border-radius:18px;padding:36px;box-shadow:0 12px 30px rgba(15,23,36,0.06)}
+    .hero h2{font-size:28px;color:var(--primary);margin-bottom:12px;line-height:1.3}
+    .hero p{color:var(--muted);line-height:1.6;font-size:15px}
+    .cta-row{margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .btn-primary{background:linear-gradient(90deg,var(--primary),#145eab);color:white;padding:12px 18px;border-radius:12px;border:none;font-weight:700;box-shadow:0 8px 24px rgba(14,90,167,0.18);cursor:pointer;transition:all .25s;font-size:14px}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(14,90,167,0.22)}
+    .btn-secondary{background:transparent;border:2px solid var(--primary);color:var(--primary);padding:10px 16px;border-radius:12px;cursor:pointer;font-weight:600;transition:all .25s;font-size:14px}
+    .btn-secondary:hover{background:rgba(14,90,167,0.1)}
+    .btn-services{background:linear-gradient(90deg,var(--services),#f59e0b);color:white;padding:12px 18px;border-radius:12px;border:none;font-weight:700;box-shadow:0 8px 24px rgba(245,158,11,0.18);cursor:pointer;transition:all .25s;font-size:14px}
+    .btn-services:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(245,158,11,0.22)}
+
+    /* Certificate badge */
+    .certificate-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--certificate);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 12px 0;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    .certificate-badge i {
+      font-size: 16px;
+    }
+
+    /* Form panel - SIMPLIFIED */
+    .form-panel{background:var(--card);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(15,23,36,0.06);position:relative}
+    .form-panel::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      border-radius: 20px;
+      z-index: -1;
+      opacity: 0.3;
+      filter: blur(10px);
+    }
+    label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted);font-weight:500}
+    input,select,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #e6e9ef;margin-bottom:12px;font-size:14px;transition:border-color 0.3s;background:var(--bg)}
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(14,90,167,0.1);
+    }
+    .input-error {
+      border-color: var(--error);
+    }
+    .input-success {
+      border-color: var(--success);
+    }
+    .error-message {
+      color: var(--error);
+      font-size: 12px;
+      margin-top: -8px;
+      margin-bottom: 12px;
+      display: none;
+    }
+    .success-message {
+      color: var(--success);
+      font-size: 12px;
+      margin-top: -8px;
+      margin-bottom: 12px;
+      display: none;
+    }
+    
+    /* Discount code styles - HIDDEN FROM PUBLIC */
+    .discount-section {
+      margin: 16px 0;
+      padding: 12px;
+      background: rgba(255, 107, 107, 0.05);
+      border-radius: 10px;
+      border-left: 3px solid var(--discount);
+    }
+    .discount-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .discount-input {
+      flex: 1;
+    }
+    .discount-btn {
+      background: var(--discount);
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .discount-btn:hover {
+      background: #ff5252;
+      transform: translateY(-2px);
+    }
+    .discount-btn:disabled {
+      background: var(--muted);
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    /* Certificate notice in form */
+    .certificate-notice {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(139, 92, 246, 0.05);
+      padding: 12px;
+      border-radius: 10px;
+      margin: 16px 0;
+      border-left: 3px solid var(--certificate);
+    }
+    .certificate-notice i {
+      color: var(--certificate);
+      font-size: 20px;
+    }
+    .certificate-notice div {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .certificate-notice strong {
+      color: var(--certificate);
+    }
+    
+    /* Video Section */
+    .video-section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 22px;
+    }
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-title {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    
+    /* Social Media Styles */
+    .social-section {
+      margin-top: 40px;
+      text-align: center;
+      padding: 20px;
+    }
+    .social-title {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 24px;
+      position: relative;
+      display: inline-block;
+    }
+    .social-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 3px;
+    }
+    .socials-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .social-item {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--card);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .social-item::before {
+      content: '';
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+      z-index: 0;
+      border-radius: 50%;
+    }
+    .social-item:hover::before {
+      transform: translateY(0);
+    }
+    .social-item i {
+      font-size: 24px;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+    .social-item:hover i {
+      color: white;
+      transform: scale(1.2);
+    }
+    .social-item .tooltip {
+      position: absolute;
+      top: -40px;
+      background: var(--text);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    .social-item .tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid var(--text);
+    }
+    .social-item:hover .tooltip {
+      opacity: 1;
+      top: -35px;
+    }
+    
+    /* Specific social media colors */
+    .social-whatsapp { color: var(--whatsapp); }
+    .social-whatsapp::before { background: var(--whatsapp); }
+    
+    .social-facebook { color: var(--facebook); }
+    .social-facebook::before { background: var(--facebook); }
+    
+    .social-instagram { color: var(--instagram); }
+    .social-instagram::before { 
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+    
+    .social-youtube { color: var(--youtube); }
+    .social-youtube::before { background: var(--youtube); }
+    
+    .social-tiktok { color: var(--tiktok); }
+    .social-tiktok::before { background: var(--tiktok); }
+    
+    .social-linkedin { color: var(--linkedin); }
+    .social-linkedin::before { background: var(--linkedin); }
+
+    .social-telegram { color: var(--telegram); }
+    .social-telegram::before { background: var(--telegram); }
+
+    /* Features */
+    .features{display:flex;gap:18px;flex-wrap:wrap;margin:28px 0}
+    .feature{flex:1 1 220px;background:var(--card);padding:16px;border-radius:14px;box-shadow:0 8px 20px rgba(2,6,23,0.04);transition:transform 0.3s}
+    .feature:hover{transform:translateY(-5px)}
+    .feature h4{margin-bottom:8px;color:var(--primary);font-size:16px}
+    .feature p{font-size:14px;color:var(--muted);line-height:1.5}
+
+    /* Course content */
+    .course-content{max-width:1100px;margin:18px auto;padding:0 22px}
+    .content-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+    .content-card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.04)}
+    .content-card h3{color:var(--primary);margin-bottom:16px;font-size:18px}
+    .content-card ul{color:var(--muted);line-height:1.8;list-style-type:none;padding:0}
+    .content-card li{padding:8px 0;padding-right:24px;position:relative}
+    .content-card li::before{content:'';position:absolute;right:0;top:14px;width:12px;height:12px;background-color:var(--accent);border-radius:50%}
+    .practice-card{background:linear-gradient(180deg,rgba(31,180,150,0.06),rgba(14,90,167,0.04));padding:22px;border-radius:12px}
+    .practice-card h3{color:var(--primary);margin-bottom:12px;font-size:18px}
+    .practice-card p{color:var(--muted);line-height:1.6}
+
+    /* Certificate Section */
+    .certificate-section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 22px;
+    }
+    .certificate-container {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      background: var(--card);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .certificate-image {
+      flex: 0 0 300px;
+      background: linear-gradient(135deg, #8B5CF6, #3B82F6);
+      border-radius: 12px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .certificate-content {
+      flex: 1;
+    }
+    .certificate-content h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+    .certificate-content p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .certificate-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .certificate-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .certificate-feature i {
+      color: var(--certificate);
+    }
+
+    /* Services Section */
+    .services-section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 22px;
+    }
+    .services-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    .services-content {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .services-content h3 {
+      color: var(--services);
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+    .services-content p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .services-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .services-list li {
+      padding: 10px 0;
+      padding-right: 30px;
+      position: relative;
+      color: var(--muted);
+    }
+    .services-list li::before {
+      content: '✓';
+      position: absolute;
+      right: 0;
+      color: var(--services);
+      font-weight: bold;
+    }
+    .services-form-panel {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .services-form-panel::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      left: -5px;
+      bottom: -5px;
+      background: linear-gradient(45deg, var(--services), #f59e0b);
+      border-radius: 20px;
+      z-index: -1;
+      opacity: 0.3;
+      filter: blur(10px);
+    }
+
+    /* Footer */
+    footer{margin-top:36px;padding:32px 22px;background:transparent;text-align:center;color:var(--muted);border-top:1px solid rgba(0,0,0,0.05)}
+    .footer-content{max-width:900px;margin:0 auto;padding:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-info{text-align:right}
+    .footer-info strong{display:block;margin-bottom:4px;color:var(--text)}
+    .footer-info div{font-size:13px;color:var(--muted)}
+    .copyright{text-align:left;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;padding:24px}
+      header{padding:16px;flex-direction:column;gap:16px}
+      nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+      nav a{margin:0}
+      .content-grid{grid-template-columns:1fr}
+      .socials-container{gap:10px;}
+      .social-item{width:50px;height:50px;}
+      .social-item i{font-size:20px;}
+      .certificate-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .certificate-image {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 300px;
+      }
+      .certificate-features {
+        justify-content: center;
+      }
+      .services-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width:520px){
+      .logo img{height:50px;width:50px}
+      .hero h2{font-size:24px}
+      .hero-card{padding:24px}
+      .cta-row{flex-direction:column;align-items:stretch}
+      .footer-content{flex-direction:column;text-align:center!important;gap:16px}
+      .footer-info{text-align:center}
+      .copyright{text-align:center}
+      .socials-container{gap:8px;}
+      .social-item{width:45px;height:45px;}
+      .social-item i{font-size:18px;}
+      .language-switcher span {
+        display: none;
+      }
+      .certificate-image {
+        height: 150px;
+        font-size: 20px;
+      }
+      .discount-row {
+        flex-direction: column;
+      }
+    }
+    
+    /* Floating animation for logo */
+    .logo img{animation:float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+    /* success modal */
+    .modal{position:fixed;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;background:rgba(3,7,18,0.45);transition:all .25s;z-index:1000}
+    .modal.show{visibility:visible;opacity:1}
+    .modal-card{background:var(--card);padding:32px;border-radius:14px;max-width:420px;text-align:center;box-shadow:0 30px 80px rgba(3,7,18,0.18);transform:translateY(20px);transition:transform 0.3s}
+    .modal.show .modal-card{transform:translateY(0)}
+    .modal-card h3{color:var(--primary);margin-bottom:12px;font-size:22px}
+    .modal-card p{color:var(--muted);margin-top:8px;line-height:1.5}
+    
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      display: none;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="gtech-logo.png" alt="G.TECH Logo">
+      <div class="brand">
+        <h1>أكاديمية G.TECH</h1>
+        <p>أكاديمية نظم المعلومات الجغرافية والتكنولوجيا</p>
+      </div>
+    </div>
+    <nav aria-label="Main Navigation">
+      <a href="#about">عن الكورس</a>
+      <a href="#services">خدمات GIS</a>
+      <a href="#register">سجل الآن</a>
+     <div class="language-switcher" id="languageSwitcher" onclick="switchToEnglish()">
+  <img src="us.svg" alt="USA Flag" class="flag-icon">
+  <span>EN</span>
+</div>
+
+
+    </nav>
+  </header>
+
+  <main class="hero" role="main">
+    <section class="hero-card" aria-labelledby="hero-title">
+      <h2 id="hero-title">المستوى الأول في GIS: مقدمة في نظم المعلومات الجغرافية ورسم الخرائط</h2>
+      <p>تعلّم أساسيات نظم المعلومات الجغرافية (GIS)، أنواع البيانات المكانية، برامج ArcGIS Pro وQGIS، ومبادئ تصميم الخرائط خلال دورة أونلاين مدتها شهر واحد مع تمارين تطبيقية.</p>
+      
+      <!-- إضافة شارة الشهادة الإلكترونية -->
+      <div class="certificate-badge">
+        <i class="fas fa-award"></i>
+        <span id="certificate-badge-text">احصل على شهادة إلكترونية بعد إتمام الدورة</span>
+      </div>
+
+      <div class="features" aria-hidden="false">
+        <div class="feature">
+          <h4>المدة</h4>
+          <p>شهر - مستوى مبتدئ</p>
+        </div>
+        <div class="feature">
+          <h4>البرامج</h4>
+          <p>ArcGIS Pro - QGIS</p>
+        </div>
+        <div class="feature">
+          <h4>التنسيق</h4>
+          <p>أونلاين مع تمارين عملية</p>
+        </div>
+        <!-- إضافة ميزة جديدة للشهادة -->
+        <div class="feature">
+          <h4><i class="fas fa-certificate" style="color: var(--certificate); margin-left: 5px;"></i> الشهادة</h4>
+          <p>شهادة إلكترونية</p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <button class="btn-primary" id="openRegister">انضم الآن</button>
+        <button class="btn-services" onclick="scrollToSection('services')">خدمات GIS</button>
+        <button class="btn-secondary" onclick="scrollToSection('about')">المزيد عن الكورس</button>
+      </div>
+    </section>
+
+    <aside class="form-panel" id="register" aria-labelledby="form-title">
+      <h3 id="form-title" style="color:var(--primary);margin-bottom:8px">سجل في الدورة</h3>
+      <p style="color:var(--muted);font-size:13px;margin-bottom:12px">املأ البيانات وسيصلك رابط الدفع وتفاصيل بدء الكورس على الواتساب والإيميل.</p>
+      <form id="regForm" action="https://script.google.com/macros/s/AKfycbyHXWEcQ6LReoC64Nr0eKF8QuuKky14ouSH10FXwUjbS7mdx4XOmyx0wARkhfrhGnXl/exec" method="POST">
+        <input type="hidden" name="formType" value="course_registration">
+        
+        <label for="name">الاسم بالكامل</label>
+        <input id="name" name="name" required placeholder="مثال: أحمد محمد">
+        <div id="name-error" class="error-message">يرجى إدخال الاسم بالكامل</div>
+        
+        <label for="email">البريد الإلكتروني</label>
+        <input id="email" name="email" type="email" required placeholder="example@mail.com">
+        <div id="email-error" class="error-message">يرجى إدخال بريد إلكتروني صحيح</div>
+        
+        <label for="phone">رقم الواتساب</label>
+        <div style="display:flex;gap:8px;align-items:center" class="country-row">
+          <select id="countryCode" name="countryCode" required
+                  style="min-width:120px;padding:12px;border-radius:10px;border:1px solid #e6e9ef;background:var(--bg);width:auto;flex:0 0 auto;">
+            <!-- الدول العربية -->
+            <option value="+20" selected>🇪🇬 مصر +20</option>
+            <option value="+966">🇸🇦 السعودية +966</option>
+            <option value="+971">🇦🇪 الإمارات +971</option>
+            <option value="+965">🇰🇼 الكويت +965</option>
+            <option value="+974">🇶🇦 قطر +974</option>
+            <option value="+968">🇴🇲 عمان +968</option>
+            <option value="+973">🇧🇭 البحرين +973</option>
+            <option value="+962">🇯🇴 الأردن +962</option>
+            <option value="+961">🇱🇧 لبنان +961</option>
+            <option value="+963">🇸🇾 سوريا +963</option>
+            <option value="+964">🇮🇶 العراق +964</option>
+            <option value="+213">🇩🇿 الجزائر +213</option>
+            <option value="+212">🇲🇦 المغرب +212</option>
+            <option value="+216">🇹🇳 تونس +216</option>
+            <option value="+222">🇲🇷 موريتانيا +222</option>
+            <option value="+249">🇸🇩 السودان +249</option>
+            <option value="+252">🇸🇴 الصومال +252</option>
+            <option value="+967">🇾🇪 اليمن +967</option>
+            <option value="+970">🇵🇸 فلسطين +970</option>
+            <option value="+269">🇰🇲 جزر القمر +269</option>
+            <!-- انتهت الدول العربية -->
+          </select>
+
+          <input id="phone" name="localPhone" type="tel" inputmode="numeric"
+                 placeholder="1012345678" required
+                 style="flex:1 1 auto;width:auto;padding:12px;border-radius:10px;border:1px solid #e6e9ef;background:var(--bg);position:relative;z-index:2;pointer-events:auto;"
+                 autocomplete="tel" aria-label="رقم الواتساب" tabindex="0">
+        </div>
+
+        <!-- حقل مخفي سيتم ملؤه آلياً ويُرسَل فعلياً إلى السيرفر باسم phone -->
+        <input type="hidden" id="fullPhone" name="phone" value="">
+
+        <div id="phone-error" class="error-message">يرجى إدخال رقم واتساب صحيح</div>
+        
+        <label for="course">اختر الكورس</label>
+        <select id="course" name="course">
+          <option value="gis1">المستوى الأول - GIS Level 1</option>
+          <option value="gis2">المستوى الثاني - GIS Level 2 (قريبًا)</option>
+        </select>
+        
+        <!-- قسم كود الخصم - مخفي عن الجمهور -->
+        <div class="discount-section">
+          <label for="discountCode">كود الخصم (اختياري)</label>
+          <div class="discount-row">
+            <div class="discount-input">
+              <input type="text" id="discountCode" name="discountCode" placeholder="إذا كان لديك كود خصم، أدخله هنا">
+            </div>
+            <button type="button" class="discount-btn" id="applyDiscount">تطبيق</button>
+          </div>
+          <div id="discount-error" class="error-message">كود الخصم غير صالح</div>
+          <div id="discount-success" class="success-message">تم تطبيق الخصم بنجاح!</div>
+        </div>
+        
+        <!-- إشعار الشهادة الإلكترونية في النموذج -->
+        <div class="certificate-notice">
+          <i class="fas fa-certificate"></i>
+          <div><strong>شهادة إلكترونية</strong> مشمولة مع إتمام الدورة</div>
+        </div>
+        
+        <button class="btn-primary" style="width:100%;margin-top:6px" id="submitBtn" type="submit">
+          <span id="btn-text">سجل الآن</span>
+          <span class="spinner" id="spinner"></span>
+        </button>
+      </form>
+
+      <div style="margin-top:14px">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px;text-align:center">تابعنا على</div>
+        <div class="socials-container">
+          <div class="social-item social-whatsapp" onclick="openWhatsApp()">
+            <i class="fab fa-whatsapp"></i>
+            <div class="tooltip">واتساب</div>
+          </div>
+          <div class="social-item social-facebook" onclick="openSocial('facebook')">
+            <i class="fab fa-facebook-f"></i>
+            <div class="tooltip">فيسبوك</div>
+          </div>
+          <div class="social-item social-instagram" onclick="openSocial('instagram')">
+            <i class="fab fa-instagram"></i>
+            <div class="tooltip">إنستجرام</div>
+          </div>
+          <div class="social-item social-youtube" onclick="openSocial('youtube')">
+            <i class="fab fa-youtube"></i>
+            <div class="tooltip">يوتيوب</div>
+          </div>
+          <div class="social-item social-tiktok" onclick="openSocial('tiktok')">
+            <i class="fab fa-tiktok"></i>
+            <div class="tooltip">تيك توك</div>
+          </div>
+          <div class="social-item social-telegram" onclick="openSocial('telegram')">
+            <i class="fab fa-telegram"></i>
+            <div class="tooltip">تيليجرام</div>
+          </div>
+          <div class="social-item social-linkedin" onclick="openSocial('linkedin')">
+            <i class="fab fa-linkedin-in"></i>
+            <div class="tooltip">لينكد إن</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <section class="course-content" id="about">
+    <div class="content-grid">
+      <div class="content-card">
+        <h3>محتوى الدورة</h3>
+        <ul>
+          <li>مقدمة – ما هو GIS؟</li>
+          <li>خيارات البرامج: ArcGIS Pro و QGIS</li>
+          <li>تطبيقات GIS</li>
+          <li>فهم الخرائط والبيانات والطبقات</li>
+          <li>أنواع البيانات المكانية (Vector, Raster, Tabular)</li>
+          <li>البيانات الوصفية ومبادئ تصميم الخرائط</li>
+          <!-- إضافة بند للشهادة الإلكترونية -->
+          <li><strong>شهادة إلكترونية</strong> بعد إتمام الدورة بنجاح</li>
+        </ul>
+      </div>
+      <div class="practice-card">
+        <h3>تمارين ونماذج عملية</h3>
+        <p>تمارين عملية باستخدام QGIS أو ArcGIS Pro تساعدك على تطبيق المعرفة وإنشاء خريطة نهائية كمشروع فردي.</p>
+        <!-- إضافة إشعار للشهادة -->
+        <div class="certificate-notice" style="margin-top: 15px;">
+          <i class="fas fa-award"></i>
+          <div>أكمل الدورة واحصل على <strong>شهادتك الإلكترونية</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم الشهادة الإلكترونية -->
+  <section class="certificate-section">
+    <div class="certificate-container">
+      <div class="certificate-image">
+        <i class="fas fa-certificate" style="font-size: 48px; margin-left: 15px;"></i>
+        <span>شهادة G.TECH</span>
+      </div>
+      <div class="certificate-content">
+        <h3>شهادة إلكترونية</h3>
+        <p>بعد إتمام دورة المستوى الأول في GIS بنجاح، ستحصل على شهادة إلكترونية من أكاديمية G.TECH تؤكد مهاراتك في نظم المعلومات الجغرافية ورسم الخرائط.</p>
+        <p>يمكن مشاركة هذه الشهادة في ملفك الشخصي على LinkedIn، إضافتها إلى سيرتك الذاتية، واستخدامها لإثبات خبرتك لأصحاب العمل.</p>
+        <div class="certificate-features">
+          <div class="certificate-feature">
+            <i class="fas fa-check-circle"></i>
+            <span>قابلة للتحقق رقميًا</span>
+          </div>
+          <div class="certificate-feature">
+            <i class="fas fa-check-circle"></i>
+            <span>قابلة للمشاركة على LinkedIn</span>
+          </div>
+          <div class="certificate-feature">
+            <i class="fas fa-check-circle"></i>
+            <span>تصميم احترافي</span>
+          </div>
+          <div class="certificate-feature">
+            <i class="fas fa-check-circle"></i>
+            <span>تحتوي على معرف فريد</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم خدمات GIS -->
+  <section class="services-section" id="services">
+    <h2 class="video-title">خدمات GIS الاحترافية</h2>
+    <div class="services-container">
+      <div class="services-content">
+        <h3>هل تحتاج إلى خدمات GIS احترافية؟</h3>
+        <p>يوفر فريق خبراء GIS لدينا مجموعة واسعة من الخدمات الاحترافية للشركات والمنظمات والأفراد. سواء كنت تحتاج إلى رسم الخرائط أو التحليل المكاني أو حلول GIS مخصصة، فإننا نوفر لك ما تحتاجه.</p>
+        
+        <ul class="services-list">
+          <li>إنشاء وتصميم خرائط مخصصة</li>
+          <li>تحليل ونمذجة البيانات المكانية</li>
+          <li>تطوير قواعد بيانات GIS</li>
+          <li>الاستشعار عن بعد وتحليل الصور</li>
+          <li>تطوير تطبيقات Web GIS</li>
+          <li>استشارات وتدريب GIS</li>
+          <li>حلول ذكاء الموقع</li>
+          <li>خدمات تصميم الخرائط</li>
+        </ul>
+        
+        <p>اتصل بنا اليوم لمناقشة احتياجاتك الخاصة في مجال GIS والحصول على عرض مخصص.</p>
+      </div>
+      
+      <div class="services-form-panel">
+        <h3 style="color:var(--services);margin-bottom:8px">طلب خدمات GIS</h3>
+        <p style="color:var(--muted);font-size:13px;margin-bottom:12px">أخبرنا عن مشروعك وسنعود إليك بحل مخصص.</p>
+        
+        <form id="servicesForm" action="https://script.google.com/macros/s/AKfycbyHXWEcQ6LReoC64Nr0eKF8QuuKky14ouSH10FXwUjbS7mdx4XOmyx0wARkhfrhGnXl/exec" method="POST">
+          <input type="hidden" name="formType" value="gis_services">
+          <!-- حقل مخفي لتخزين الاسم مع تفاصيل الخدمة -->
+          <input type="hidden" id="servicesNameWithDetails" name="name" value="">
+          
+          <label for="servicesName">الاسم بالكامل</label>
+          <input id="servicesName" required placeholder="مثال: أحمد محمد">
+          <div id="services-name-error" class="error-message">يرجى إدخال الاسم بالكامل</div>
+          
+          <label for="servicesEmail">البريد الإلكتروني</label>
+          <input id="servicesEmail" name="email" type="email" required placeholder="example@mail.com">
+          <div id="services-email-error" class="error-message">يرجى إدخال بريد إلكتروني صحيح</div>
+          
+          <label for="servicesPhone">رقم الواتساب</label>
+          <div style="display:flex;gap:8px;align-items:center" class="country-row">
+            <select id="servicesCountryCode" name="countryCode" required
+                    style="min-width:120px;padding:12px;border-radius:10px;border:1px solid #e6e9ef;background:var(--bg);width:auto;flex:0 0 auto;">
+              <option value="+20" selected>🇪🇬 مصر +20</option>
+              <option value="+966">🇸🇦 السعودية +966</option>
+              <option value="+971">🇦🇪 الإمارات +971</option>
+              <option value="+965">🇰🇼 الكويت +965</option>
+              <option value="+974">🇶🇦 قطر +974</option>
+              <option value="+968">🇴🇲 عمان +968</option>
+              <option value="+973">🇧🇭 البحرين +973</option>
+              <option value="+962">🇯🇴 الأردن +962</option>
+              <option value="+961">🇱🇧 لبنان +961</option>
+              <option value="+963">🇸🇾 سوريا +963</option>
+              <option value="+964">🇮🇶 العراق +964</option>
+              <option value="+213">🇩🇿 الجزائر +213</option>
+              <option value="+212">🇲🇦 المغرب +212</option>
+              <option value="+216">🇹🇳 تونس +216</option>
+              <option value="+222">🇲🇷 موريتانيا +222</option>
+              <option value="+249">🇸🇩 السودان +249</option>
+              <option value="+252">🇸🇴 الصومال +252</option>
+              <option value="+967">🇾🇪 اليمن +967</option>
+              <option value="+970">🇵🇸 فلسطين +970</option>
+              <option value="+269">🇰🇲 جزر القمر +269</option>
+            </select>
+
+            <input id="servicesPhone" name="localPhone" type="tel" inputmode="numeric"
+                   placeholder="1012345678" required
+                   style="flex:1 1 auto;width:auto;padding:12px;border-radius:10px;border:1px solid #e6e9ef;background:var(--bg);position:relative;z-index:2;pointer-events:auto;"
+                   autocomplete="tel" aria-label="رقم الواتساب" tabindex="0">
+          </div>
+          <input type="hidden" id="servicesFullPhone" name="phone" value="">
+          <div id="services-phone-error" class="error-message">يرجى إدخال رقم واتساب صحيح</div>
+          
+          <label for="serviceType">نوع الخدمة المطلوبة</label>
+          <select id="serviceType" name="serviceType" required>
+            <option value="">اختر خدمة</option>
+            <option value="إنشاء خرائط مخصصة">إنشاء خرائط مخصصة</option>
+            <option value="تحليل البيانات المكانية">تحليل البيانات المكانية</option>
+            <option value="تطوير قاعدة بيانات GIS">تطوير قاعدة بيانات GIS</option>
+            <option value="الاستشعار عن بعد">الاستشعار عن بعد</option>
+            <option value="تطبيق Web GIS">تطبيق Web GIS</option>
+            <option value="استشارات GIS">استشارات GIS</option>
+            <option value="أخرى">أخرى (صف أدناه)</option>
+          </select>
+          
+          <label for="projectDetails">تفاصيل المشروع</label>
+          <textarea id="projectDetails" name="projectDetails" rows="4" placeholder="يرجى وصف متطلبات مشروعك، الجدول الزمني، وأي احتياجات محددة..." required></textarea>
+          <div id="services-details-error" class="error-message">يرجى تقديم تفاصيل المشروع</div>
+          
+          <!-- قسم كود الخصم للخدمات - مخفي عن الجمهور -->
+          <div class="discount-section">
+            <label for="servicesDiscountCode">كود الخصم (اختياري)</label>
+            <div class="discount-row">
+              <div class="discount-input">
+                <input type="text" id="servicesDiscountCode" name="discountCode" placeholder="إذا كان لديك كود خصم، أدخله هنا">
+              </div>
+              <button type="button" class="discount-btn" id="applyServicesDiscount">تطبيق</button>
+            </div>
+            <div id="services-discount-error" class="error-message">كود الخصم غير صالح</div>
+            <div id="services-discount-success" class="success-message">تم تطبيق الخصم بنجاح!</div>
+          </div>
+          
+          <button class="btn-services" style="width:100%;margin-top:6px" id="servicesSubmitBtn" type="submit">
+            <span id="services-btn-text">طلب الخدمات</span>
+            <span class="spinner" id="services-spinner"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section">
+    <h2 class="video-title">فيديو تعريفي بالكورس</h2>
+    <div class="video-container">
+     <iframe src="https://www.youtube.com/embed/tdsVNdsSnEo?rel=0&vq=hd1080" 
+        title="G.TECH GIS Course Introduction"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+</iframe>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section class="social-section">
+    <h2 class="social-title">تواصل معنا على منصات التواصل الاجتماعي</h2>
+    <div class="socials-container">
+      <div class="social-item social-whatsapp" onclick="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i>
+        <div class="tooltip">تواصل عبر الواتساب</div>
+      </div>
+      <div class="social-item social-facebook" onclick="openSocial('facebook')">
+        <i class="fab fa-facebook-f"></i>
+        <div class="tooltip">تابعنا على فيسبوك</div>
+      </div>
+      <div class="social-item social-instagram" onclick="openSocial('instagram')">
+        <i class="fab fa-instagram"></i>
+        <div class="tooltip">تابعنا على إنستجرام</div>
+      </div>
+      <div class="social-item social-youtube" onclick="openSocial('youtube')">
+        <i class="fab fa-youtube"></i>
+        <div class="tooltip">اشترك في قناتنا</div>
+      </div>
+      <div class="social-item social-tiktok" onclick="openSocial('tiktok')">
+        <i class="fab fa-tiktok"></i>
+        <div class="tooltip">تابعنا على تيك توك</div>
+      </div>
+      <div class="social-item social-telegram" onclick="openSocial('telegram')">
+        <i class="fab fa-telegram"></i>
+        <div class="tooltip">انضم إلى تيليجرام</div>
+      </div>
+      <div class="social-item social-linkedin" onclick="openSocial('linkedin')">
+        <i class="fab fa-linkedin-in"></i>
+        <div class="tooltip">تواصل معنا على لينكد إن</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-info">
+        <strong>أكاديمية G.TECH</strong>
+        <div>البريد الإلكتروني: g.teck.academy@gmail.com | واتساب: +201550470133</div>
+      </div>
+      <div class="copyright">© G.TECH - جميع الحقوق محفوظة</div>
+    </div>
+  </footer>
+
+  <!-- Success modal -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <h3 id="modal-title" style="color:var(--primary)">تم التسجيل بنجاح!</h3>
+      <p style="color:var(--muted);margin-top:8px">شكرًا لتسجيلك. سنرسل لك تفاصيل الدفع وبداية الدورة عبر الواتساب والإيميل.</p>
+      <!-- إضافة إشعار الشهادة في النافذة المنبثقة -->
+      <div class="certificate-notice" style="margin: 16px 0;">
+        <i class="fas fa-certificate"></i>
+        <div>أكمل الدورة للحصول على <strong>شهادتك الإلكترونية</strong></div>
+      </div>
+      <div style="margin-top:16px"><button class="btn-primary" onclick="closeModal()">حسناً</button></div>
+    </div>
+  </div>
+
+  <!-- Services Success modal -->
+  <div id="servicesModal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="services-modal-title">
+    <div class="modal-card">
+      <h3 id="services-modal-title" style="color:var(--services)">تم تقديم الطلب!</h3>
+      <p style="color:var(--muted);margin-top:8px">شكرًا لاهتمامك بخدمات GIS لدينا. سنتواصل معك خلال 24 ساعة لمناقشة متطلبات مشروعك.</p>
+      <div style="margin-top:16px"><button class="btn-services" onclick="closeServicesModal()">حسناً</button></div>
+    </div>
+  </div>
+
+  <script>
+    // Language management
+    const languages = {
+      ar: {
+        // Header
+        brandTitle: "أكاديمية G.TECH",
+        brandSubtitle: "أكاديمية نظم المعلومات الجغرافية والتكنولوجيا",
+        navAbout: "عن الكورس",
+        navServices: "خدمات GIS",
+        navRegister: "سجل الآن",
+        language: "AR",
+        flag: "eg.svg",
+        
+        // Hero section
+        heroTitle: "المستوى الأول في GIS: مقدمة في نظم المعلومات الجغرافية ورسم الخرائط",
+        heroDescription: "تعلّم أساسيات نظم المعلومات الجغرافية (GIS)، أنواع البيانات المكانية، برامج ArcGIS Pro وQGIS، ومبادئ تصميم الخرائط خلال دورة أونلاين مدتها شهر واحد مع تمارين تطبيقية.",
+        certificateBadge: "احصل على شهادة إلكترونية بعد إتمام الدورة",
+        featureDuration: "المدة",
+        featureDurationText: "شهر - مستوى مبتدئ",
+        featureSoftware: "البرامج",
+        featureSoftwareText: "ArcGIS Pro - QGIS",
+        featureFormat: "التنسيق",
+        featureFormatText: "أونلاين مع تمارين عملية",
+        featureCertificate: "الشهادة",
+        featureCertificateText: "شهادة إلكترونية",
+        btnJoin: "انضم الآن",
+        btnServices: "خدمات GIS",
+        btnMore: "المزيد عن الكورس",
+        
+        // Form
+        formTitle: "سجل في الدورة",
+        formDescription: "املأ البيانات وسيصلك رابط الدفع وتفاصيل بدء الكورس على الواتساب والإيميل.",
+        labelName: "الاسم بالكامل",
+        placeholderName: "مثال: أحمد محمد",
+        labelEmail: "البريد الإلكتروني",
+        placeholderEmail: "example@mail.com",
+        labelPhone: "رقم الواتساب",
+        placeholderPhone: "+20xxxxxxxxxx",
+        labelCourse: "اختر الكورس",
+        optionCourse1: "المستوى الأول - GIS Level 1",
+        optionCourse2: "المستوى الثاني - GIS Level 2 (قريبًا)",
+        labelDiscount: "كود الخصم (اختياري)",
+        placeholderDiscount: "إذا كان لديك كود خصم، أدخله هنا",
+        btnApplyDiscount: "تطبيق",
+        certificateNotice: "شهادة إلكترونية مشمولة مع إتمام الدورة",
+        errorName: "يرجى إدخال الاسم بالكامل",
+        errorEmail: "يرجى إدخال بريد إلكتروني صحيح",
+        errorPhone: "يرجى إدخال رقم واتساب صحيح",
+        errorDiscount: "كود الخصم غير صالح",
+        successDiscount: "تم تطبيق الخصم بنجاح!",
+        btnRegister: "سجل الآن",
+        
+        // Course content
+        contentTitle: "محتوى الدورة",
+        contentItems: [
+          "مقدمة – ما هو GIS؟",
+          "خيارات البرامج: ArcGIS Pro و QGIS",
+          "تطبيقات GIS",
+          "فهم الخرائط والبيانات والطبقات",
+          "أنواع البيانات المكانية (Vector, Raster, Tabular)",
+          "البيانات الوصفية ومبادئ تصميم الخرائط",
+          "شهادة إلكترونية بعد إتمام الدورة بنجاح"
+        ],
+        practiceTitle: "تمارين ونماذج عملية",
+        practiceText: "تمارين عملية باستخدام QGIS أو ArcGIS Pro تساعدك على تطبيق المعرفة وإنشاء خريطة نهائية كمشروع فردي.",
+        practiceCertificate: "أكمل الدورة واحصل على شهادتك الإلكترونية",
+        
+        // Certificate section
+        certificateTitle: "شهادة إلكترونية",
+        certificateDescription1: "بعد إتمام دورة المستوى الأول في GIS بنجاح، ستحصل على شهادة إلكترونية من أكاديمية G.TECH تؤكد مهاراتك في نظم المعلومات الجغرافية ورسم الخرائط.",
+        certificateDescription2: "يمكن مشاركة هذه الشهادة في ملفك الشخصي على LinkedIn، إضافتها إلى سيرتك الذاتية، واستخدامها لإثبات خبرتك لأصحاب العمل.",
+        certificateFeature1: "قابلة للتحقق رقميًا",
+        certificateFeature2: "قابلة للمشاركة على LinkedIn",
+        certificateFeature3: "تصميم احترافي",
+        certificateFeature4: "تحتوي على معرف فريد",
+        
+        // Services section
+        servicesTitle: "خدمات GIS الاحترافية",
+        servicesHeading: "هل تحتاج إلى خدمات GIS احترافية؟",
+        servicesDescription: "يوفر فريق خبراء GIS لدينا مجموعة واسعة من الخدمات الاحترافية للشركات والمنظمات والأفراد. سواء كنت تحتاج إلى رسم الخرائط أو التحليل المكاني أو حلول GIS مخصصة، فإننا نوفر لك ما تحتاجه.",
+        servicesList: [
+          "إنشاء وتصميم خرائط مخصصة",
+          "تحليل ونمذجة البيانات المكانية",
+          "تطوير قواعد بيانات GIS",
+          "الاستشعار عن بعد وتحليل الصور",
+          "تطوير تطبيقات Web GIS",
+          "استشارات وتدريب GIS",
+          "حلول ذكاء الموقع",
+          "خدمات تصميم الخرائط"
+        ],
+        servicesContact: "اتصل بنا اليوم لمناقشة احتياجاتك الخاصة في مجال GIS والحصول على عرض مخصص.",
+        servicesFormTitle: "طلب خدمات GIS",
+        servicesFormDescription: "أخبرنا عن مشروعك وسنعود إليك بحل مخصص.",
+        labelServiceType: "نوع الخدمة المطلوبة",
+        serviceOptions: [
+          "اختر خدمة",
+          "إنشاء خرائط مخصصة",
+          "تحليل البيانات المكانية",
+          "تطوير قاعدة بيانات GIS",
+          "الاستشعار عن بعد",
+          "تطبيق Web GIS",
+          "استشارات GIS",
+          "أخرى (صف أدناه)"
+        ],
+        labelProjectDetails: "تفاصيل المشروع",
+        placeholderProjectDetails: "يرجى وصف متطلبات مشروعك، الجدول الزمني، وأي احتياجات محددة...",
+        btnRequestServices: "طلب الخدمات",
+        servicesModalTitle: "تم تقديم الطلب!",
+        servicesModalText: "شكرًا لاهتمامك بخدمات GIS لدينا. سنتواصل معك خلال 24 ساعة لمناقشة متطلبات مشروعك.",
+        
+        // Video section
+        videoTitle: "فيديو تعريفي بالكورس",
+        
+        // Social section
+        socialTitle: "تواصل معنا على منصات التواصل الاجتماعي",
+        
+        // Footer
+        footerEmail: "البريد الإلكتروني: g.teck.academy@gmail.com",
+        footerWhatsApp: "واتساب: +201550470133",
+        copyright: "© G.TECH - جميع الحقوق محفوظة",
+        
+        // Modal
+        modalTitle: "تم التسجيل بنجاح!",
+        modalText: "شكرًا لتسجيلك. سنرسل لك تفاصيل الدفع وبداية الدورة عبر الواتساب والإيميل.",
+        modalCertificate: "أكمل الدورة للحصول على شهادتك الإلكترونية",
+        modalButton: "حسناً"
+      }
+    };
+
+    let currentLang = 'ar';
+    let discountApplied = false;
+    let servicesDiscountApplied = false;
+
+    function scrollToSection(id){
+      document.getElementById(id).scrollIntoView({behavior:'smooth'});
+    }
+    
+    document.getElementById('openRegister').addEventListener('click', function(){
+      scrollToSection('register');
+      document.getElementById('name').focus();
+    });
+
+    // Form validation and submission
+    const form = document.getElementById('regForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const discountInput = document.getElementById('discountCode');
+    const applyDiscountBtn = document.getElementById('applyDiscount');
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const phoneError = document.getElementById('phone-error');
+    const discountError = document.getElementById('discount-error');
+    const discountSuccess = document.getElementById('discount-success');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btn-text');
+    const spinner = document.getElementById('spinner');
+
+    // Services form elements
+    const servicesForm = document.getElementById('servicesForm');
+    const servicesNameInput = document.getElementById('servicesName');
+    const servicesEmailInput = document.getElementById('servicesEmail');
+    const servicesPhoneInput = document.getElementById('servicesPhone');
+    const serviceTypeSelect = document.getElementById('serviceType');
+    const projectDetailsTextarea = document.getElementById('projectDetails');
+    const servicesNameWithDetailsInput = document.getElementById('servicesNameWithDetails');
+    const servicesDiscountInput = document.getElementById('servicesDiscountCode');
+    const applyServicesDiscountBtn = document.getElementById('applyServicesDiscount');
+    const servicesDiscountError = document.getElementById('services-discount-error');
+    const servicesDiscountSuccess = document.getElementById('services-discount-success');
+    const servicesNameError = document.getElementById('services-name-error');
+    const servicesEmailError = document.getElementById('services-email-error');
+    const servicesPhoneError = document.getElementById('services-phone-error');
+    const servicesDetailsError = document.getElementById('services-details-error');
+    const servicesSubmitBtn = document.getElementById('servicesSubmitBtn');
+    const servicesBtnText = document.getElementById('services-btn-text');
+    const servicesSpinner = document.getElementById('services-spinner');
+
+    // Validation functions for course form
+    function validateName() {
+      if (nameInput.value.trim() === '') {
+        nameError.style.display = 'block';
+        nameInput.classList.add('input-error');
+        return false;
+      } else {
+        nameError.style.display = 'none';
+        nameInput.classList.remove('input-error');
+        return true;
+      }
+    }
+
+    function validateEmail() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput.value)) {
+        emailError.style.display = 'block';
+        emailInput.classList.add('input-error');
+        return false;
+      } else {
+        emailError.style.display = 'none';
+        emailInput.classList.remove('input-error');
+        return true;
+      }
+    }
+
+    function validatePhone() {
+      const countryCode = document.getElementById('countryCode').value;
+      const phoneDigits = phoneInput.value.replace(/\D/g, '');
+      const minLen = 6;
+      const maxLen = 14;
+
+      if (phoneDigits.length < minLen || phoneDigits.length > maxLen) {
+        phoneError.style.display = 'block';
+        phoneInput.classList.add('input-error');
+        return false;
+      } else {
+        phoneError.style.display = 'none';
+        phoneInput.classList.remove('input-error');
+        return true;
+      }
+    }
+
+    // Validation functions for services form
+    function validateServicesName() {
+      if (servicesNameInput.value.trim() === '') {
+        servicesNameError.style.display = 'block';
+        servicesNameInput.classList.add('input-error');
+        return false;
+      } else {
+        servicesNameError.style.display = 'none';
+        servicesNameInput.classList.remove('input-error');
+        return true;
+      }
+    }
+
+    function validateServicesEmail() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(servicesEmailInput.value)) {
+        servicesEmailError.style.display = 'block';
+        servicesEmailInput.classList.add('input-error');
+        return false;
+      } else {
+        servicesEmailError.style.display = 'none';
+        servicesEmailInput.classList.remove('input-error');
+        return true;
+      }
+    }
+
+    function validateServicesPhone() {
+      const countryCode = document.getElementById('servicesCountryCode').value;
+      const phoneDigits = servicesPhoneInput.value.replace(/\D/g, '');
+      const minLen = 6;
+      const maxLen = 14;
+
+      if (phoneDigits.length < minLen || phoneDigits.length > maxLen) {
+        servicesPhoneError.style.display = 'block';
+        servicesPhoneInput.classList.add('input-error');
+        return false;
+      } else {
+        servicesPhoneError.style.display = 'none';
+        servicesPhoneInput.classList.remove('input-error');
+        return true;
+      }
+    }
+
+    function validateProjectDetails() {
+      if (projectDetailsTextarea.value.trim() === '') {
+        servicesDetailsError.style.display = 'block';
+        projectDetailsTextarea.classList.add('input-error');
+        return false;
+      } else {
+        servicesDetailsError.style.display = 'none';
+        projectDetailsTextarea.classList.remove('input-error');
+        return true;
+      }
+    }
+
+    // Discount code validation
+    function validateDiscountCode(code) {
+      // List of valid discount codes - HIDDEN FROM PUBLIC
+      const validCodes = ['FRIENDS50', 'KSA95', 'GIS25', 'TECH30'];
+      return validCodes.includes(code.toUpperCase());
+    }
+
+    function applyDiscount() {
+      const discountCode = discountInput.value.trim();
+      
+      if (discountCode === '') {
+        discountError.style.display = 'block';
+        discountSuccess.style.display = 'none';
+        discountInput.classList.add('input-error');
+        discountInput.classList.remove('input-success');
+        discountApplied = false;
+        return;
+      }
+      
+      if (validateDiscountCode(discountCode)) {
+        discountError.style.display = 'none';
+        discountSuccess.style.display = 'block';
+        discountInput.classList.remove('input-error');
+        discountInput.classList.add('input-success');
+        discountApplied = true;
+        applyDiscountBtn.disabled = true;
+        applyDiscountBtn.textContent = 'مطبق';
+        
+        // Add discount code to name for Excel sheet
+        const currentName = nameInput.value.trim();
+        if (currentName && !currentName.includes(`[${discountCode}]`)) {
+          nameInput.value = `${currentName} [${discountCode}]`;
+        }
+      } else {
+        discountError.style.display = 'block';
+        discountSuccess.style.display = 'none';
+        discountInput.classList.add('input-error');
+        discountInput.classList.remove('input-success');
+        discountApplied = false;
+      }
+    }
+
+    function applyServicesDiscount() {
+      const discountCode = servicesDiscountInput.value.trim();
+      
+      if (discountCode === '') {
+        servicesDiscountError.style.display = 'block';
+        servicesDiscountSuccess.style.display = 'none';
+        servicesDiscountInput.classList.add('input-error');
+        servicesDiscountInput.classList.remove('input-success');
+        servicesDiscountApplied = false;
+        return;
+      }
+      
+      if (validateDiscountCode(discountCode)) {
+        servicesDiscountError.style.display = 'none';
+        servicesDiscountSuccess.style.display = 'block';
+        servicesDiscountInput.classList.remove('input-error');
+        servicesDiscountInput.classList.add('input-success');
+        servicesDiscountApplied = true;
+        applyServicesDiscountBtn.disabled = true;
+        applyServicesDiscountBtn.textContent = 'مطبق';
+        
+        // Add discount code to name for Excel sheet
+        const currentName = servicesNameInput.value.trim();
+        if (currentName && !currentName.includes(`[${discountCode}]`)) {
+          servicesNameInput.value = `${currentName} [${discountCode}]`;
+        }
+      } else {
+        servicesDiscountError.style.display = 'block';
+        servicesDiscountSuccess.style.display = 'none';
+        servicesDiscountInput.classList.add('input-error');
+        servicesDiscountInput.classList.remove('input-success');
+        servicesDiscountApplied = false;
+      }
+    }
+
+    // Add input event listeners for real-time validation
+    nameInput.addEventListener('blur', validateName);
+    emailInput.addEventListener('blur', validateEmail);
+    phoneInput.addEventListener('blur', validatePhone);
+    applyDiscountBtn.addEventListener('click', applyDiscount);
+
+    servicesNameInput.addEventListener('blur', validateServicesName);
+    servicesEmailInput.addEventListener('blur', validateServicesEmail);
+    servicesPhoneInput.addEventListener('blur', validateServicesPhone);
+    projectDetailsTextarea.addEventListener('blur', validateProjectDetails);
+    applyServicesDiscountBtn.addEventListener('click', applyServicesDiscount);
+
+    // Allow pressing Enter in discount field to apply
+    discountInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        applyDiscount();
+      }
+    });
+
+    servicesDiscountInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        applyServicesDiscount();
+      }
+    });
+
+    // Reset discount validation when user starts typing
+    discountInput.addEventListener('input', function() {
+      if (discountApplied) {
+        discountApplied = false;
+        applyDiscountBtn.disabled = false;
+        applyDiscountBtn.textContent = 'تطبيق';
+        discountError.style.display = 'none';
+        discountSuccess.style.display = 'none';
+        discountInput.classList.remove('input-error');
+        discountInput.classList.remove('input-success');
+        
+        // Remove discount code from name
+        const currentName = nameInput.value.trim();
+        const discountCode = discountInput.value.trim().toUpperCase();
+        if (currentName && currentName.includes(`[${discountCode}]`)) {
+          nameInput.value = currentName.replace(` [${discountCode}]`, '');
+        }
+      }
+    });
+
+    servicesDiscountInput.addEventListener('input', function() {
+      if (servicesDiscountApplied) {
+        servicesDiscountApplied = false;
+        applyServicesDiscountBtn.disabled = false;
+        applyServicesDiscountBtn.textContent = 'تطبيق';
+        servicesDiscountError.style.display = 'none';
+        servicesDiscountSuccess.style.display = 'none';
+        servicesDiscountInput.classList.remove('input-error');
+        servicesDiscountInput.classList.remove('input-success');
+        
+        // Remove discount code from name
+        const currentName = servicesNameInput.value.trim();
+        const discountCode = servicesDiscountInput.value.trim().toUpperCase();
+        if (currentName && currentName.includes(`[${discountCode}]`)) {
+          servicesNameInput.value = currentName.replace(` [${discountCode}]`, '');
+        }
+      }
+    });
+
+    // Form submission (AJAX -> Google Apps Script)
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const isNameValid = validateName();
+      const isEmailValid = validateEmail();
+      const isPhoneValid = validatePhone();
+
+      if (!(isNameValid && isEmailValid && isPhoneValid)) return;
+
+      // ---- دمج الكود + الرقم في الحقل المخفي ----
+      const countryCode = document.getElementById('countryCode').value;
+      const phoneDigits = phoneInput.value.replace(/\D/g, '');
+      document.getElementById('fullPhone').value = countryCode + phoneDigits;
+
+      // Show loading state
+      btnText.style.display = 'none';
+      spinner.style.display = 'inline-block';
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form)
+        });
+
+        if (response.ok || response.status === 200) {
+          document.getElementById('modal').classList.add('show');
+          document.getElementById('modal').setAttribute('aria-hidden','false');
+          form.reset();
+          // إعادة الاختيارات الافتراضية
+          document.getElementById('countryCode').value = '+20';
+          document.getElementById('fullPhone').value = '';
+          // Reset discount state
+          discountApplied = false;
+          applyDiscountBtn.disabled = false;
+          applyDiscountBtn.textContent = 'تطبيق';
+          discountError.style.display = 'none';
+          discountSuccess.style.display = 'none';
+          discountInput.classList.remove('input-error');
+          discountInput.classList.remove('input-success');
+        } else {
+          throw new Error('Server responded with status ' + response.status);
+        }
+      } catch (error) {
+        console.error('Form submit error:', error);
+        alert('حدث خطأ أثناء التسجيل، يرجى المحاولة مرة أخرى');
+      } finally {
+        btnText.style.display = 'inline';
+        spinner.style.display = 'none';
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Services form submission
+    servicesForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const isNameValid = validateServicesName();
+      const isEmailValid = validateServicesEmail();
+      const isPhoneValid = validateServicesPhone();
+      const isDetailsValid = validateProjectDetails();
+
+      if (!(isNameValid && isEmailValid && isPhoneValid && isDetailsValid)) return;
+
+      // ---- دمج الكود + الرقم في الحقل المخفي ----
+      const countryCode = document.getElementById('servicesCountryCode').value;
+      const phoneDigits = servicesPhoneInput.value.replace(/\D/g, '');
+      document.getElementById('servicesFullPhone').value = countryCode + phoneDigits;
+
+      // ---- تحديث حقل الاسم ليشمل تفاصيل الخدمة ----
+      const serviceType = document.getElementById('serviceType').value;
+      const projectDetails = document.getElementById('projectDetails').value;
+      const originalName = document.getElementById('servicesName').value.trim();
+      
+      // إنشاء نص منظم للاسم مع تفاصيل الخدمة
+      let serviceDetailsText = '';
+      if (serviceType && serviceType !== '') {
+        serviceDetailsText = ` - ${serviceType}`;
+      }
+      
+      // إضافة جزء من تفاصيل المشروع إذا كانت طويلة
+      if (projectDetails && projectDetails !== '') {
+        const shortDetails = projectDetails.length > 50 ? 
+          projectDetails.substring(0, 50) + '...' : projectDetails;
+        serviceDetailsText += ` (${shortDetails})`;
+      }
+      
+      // إضافة كود الخصم إذا تم تطبيقه
+      if (servicesDiscountApplied && servicesDiscountInput.value.trim() !== '') {
+        serviceDetailsText += ` [${servicesDiscountInput.value.trim()}]`;
+      }
+      
+      // تحديث الحقل المخفي الذي سيتم إرساله إلى جوجل شيت
+      document.getElementById('servicesNameWithDetails').value = originalName + serviceDetailsText;
+
+      // Show loading state
+      servicesBtnText.style.display = 'none';
+      servicesSpinner.style.display = 'inline-block';
+      servicesSubmitBtn.disabled = true;
+
+      try {
+        const response = await fetch(servicesForm.action, {
+          method: 'POST',
+          body: new FormData(servicesForm)
+        });
+
+        if (response.ok || response.status === 200) {
+          document.getElementById('servicesModal').classList.add('show');
+          document.getElementById('servicesModal').setAttribute('aria-hidden','false');
+          servicesForm.reset();
+          // إعادة الاختيارات الافتراضية
+          document.getElementById('servicesCountryCode').value = '+20';
+          document.getElementById('servicesFullPhone').value = '';
+          document.getElementById('servicesNameWithDetails').value = '';
+          // Reset discount state
+          servicesDiscountApplied = false;
+          applyServicesDiscountBtn.disabled = false;
+          applyServicesDiscountBtn.textContent = 'تطبيق';
+          servicesDiscountError.style.display = 'none';
+          servicesDiscountSuccess.style.display = 'none';
+          servicesDiscountInput.classList.remove('input-error');
+          servicesDiscountInput.classList.remove('input-success');
+        } else {
+          throw new Error('Server responded with status ' + response.status);
+        }
+      } catch (error) {
+        console.error('Services form submit error:', error);
+        alert('حدث خطأ أثناء تقديم طلبك، يرجى المحاولة مرة أخرى');
+      } finally {
+        servicesBtnText.style.display = 'inline';
+        servicesSpinner.style.display = 'none';
+        servicesSubmitBtn.disabled = false;
+      }
+    });
+
+    function closeModal(){
+      document.getElementById('modal').classList.remove('show');
+      document.getElementById('modal').setAttribute('aria-hidden','true');
+    }
+
+    function closeServicesModal(){
+      document.getElementById('servicesModal').classList.remove('show');
+      document.getElementById('servicesModal').setAttribute('aria-hidden','true');
+    }
+
+    // WhatsApp function - تم تحديث الرقم
+    function openWhatsApp(){
+      const phone = '+201550470133';
+      const text = encodeURIComponent('اهلا، اريد التسجيل في دورة GIS Level 1');
+      window.open('https://api.whatsapp.com/send?phone='+phone+'&text='+text,'_blank');
+    }
+    
+    // Social media functions - تم تحديث الروابط هنا
+    function openSocial(platform) {
+      const urls = {
+        facebook: 'https://www.facebook.com/profile.php?id=61562691214074',
+        instagram: 'https://www.instagram.com/gtech5152/',
+        youtube: 'https://www.youtube.com/@G.TECHacademy',
+        tiktok: 'https://www.tiktok.com/@g.tech55',
+        linkedin: 'https://www.linkedin.com/in/g-tech-88b3ab383',
+        telegram: 'https://t.me/g_techgis'
+      };
+      
+      if (urls[platform]) {
+        window.open(urls[platform], '_blank');
+      }
+    }
+    
+    // Language switching functionality
+   function switchToEnglish() {
+  window.location.href = 'index-en.html';
+}
+
+    // Add animation to social items on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const socialItems = document.querySelectorAll('.social-item');
+      
+      socialItems.forEach((item, index) => {
+        // Add initial delay for animation
+        item.style.animationDelay = `${index * 0.1}s`;
+        item.style.animation = 'none';
+        
+        setTimeout(() => {
+          item.style.animation = 'socialAppear 0.5s ease forwards';
+        }, 100);
+      });
+    });
+    
+    // Add keyframe animation for social items
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes socialAppear {
+        0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+        100% { transform: scale(1) rotate(0); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
