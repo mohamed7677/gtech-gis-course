@@ -1285,10 +1285,10 @@
 
     // Discount code validation
     function validateDiscountCode(code) {
-      // List of valid discount codes - HIDDEN FROM PUBLIC
-      const validCodes = ['FRIENDS50', 'KSA95', 'GIS25', 'TECH30'];
-      return validCodes.includes(code.toUpperCase());
-    }
+  // List of valid discount codes - HIDDEN FROM PUBLIC - Includes JOU20
+  const validCodes = ['FRIENDS50', 'Ayaat50', 'GIS25', 'TECH30', 'JOU20'];
+  return validCodes.includes(code.toUpperCase());
+}
 
     function applyDiscount() {
       const discountCode = discountInput.value.trim();
